@@ -1,7 +1,7 @@
 {
   "name": "parkingspace-commons",
   "version": "0.0.0",
-  "main": "index.js",
+  "main": "dist/main.js",
   "scripts": {
     "build": "tsc"
   },
