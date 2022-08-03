@@ -1,9 +1,12 @@
 # ParkingSpace NestJS Common Components
 ## how to use
-1. install this module
+1. install this module:
+```
+pnpm i @team-spacelab/parkingspace-commons
+```
 2. apply this code to `main.ts`:
 ```ts
-import { setupCommons } from '~~~/utils'
+import { setupCommons } from '@team-spacelab/parkingspace-commons/utils'
 
 async function bootstrap () {
   const app = await NestFactory.create(AppModule, {
