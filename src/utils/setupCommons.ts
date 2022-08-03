@@ -3,6 +3,7 @@ import { Response } from 'express'
 import morgan from 'morgan'
 import { HttpExceptionFilter } from './exception.filter'
 import { Logger } from './logger.service'
+import cookieParser from 'cookie-parser'
 
 export function setupCommons (app: INestApplication, serverName: string) {
   app.useLogger(app.get(Logger))
@@ -27,6 +28,7 @@ export function setupCommons (app: INestApplication, serverName: string) {
           .flat().join('\n'))
   }))
 
+  app.use(cookieParser())
   app.use(morgan((tokens, req, res) =>
     JSON.stringify({
       type: 'ACCESS_LOG',

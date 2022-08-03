@@ -2,11 +2,11 @@
 ## how to use
 1. install this module:
 ```
-pnpm i @team-spacelab/parkingspace-commons
+pnpm i github:team-spacelab/parkingspace-commons#pkg
 ```
 2. apply this code to `main.ts`:
 ```ts
-import { setupCommons } from '@team-spacelab/parkingspace-commons/utils'
+import { setupCommons } from 'parkingspace-commons'
 
 async function bootstrap () {
   const app = await NestFactory.create(AppModule, {
