@@ -18,9 +18,7 @@ jobs:
       - run: npx pnpm i
       - run: npx pnpm build
       - run: |
-          git remote update
-          git fetch
-          git checkout origin/pkg
+          git checkout -b pkg
           git add dist -f
           git commit -m "build: $(git log --format="%H" -n 1) commit"
           git push origin pkg
