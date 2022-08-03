@@ -1,5 +1,5 @@
 {
-  "name": "@team-spacelab/parkingspace-commons",
+  "name": "parkingspace-commons",
   "version": "0.0.0",
   "main": "index.js",
   "scripts": {

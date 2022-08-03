@@ -1,0 +1,26 @@
+name: build package and serve
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest 
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+      - run: npx pnpm i
+      - run: npx pnpm build
+      - run: |
+          git remote update
+          git fetch
+          git checkout origin/pkg
+          git add dist -f
+          git commit -m "build: $(git log --format="%H" -n 1) commit"
+          git push origin pkg
