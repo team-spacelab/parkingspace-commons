@@ -18,7 +18,8 @@ export class DBConfigService implements TypeOrmOptionsFactory {
       username: this.config.get<string>('DATABASE_USER', 'parkingspace'),
       password: this.config.get<string>('DATABASE_PASSWD', ''),
       database: this.config.get<string>('DATABASE_SCHEMA', 'parkingspace'),
-      autoLoadEntities: true
+      autoLoadEntities: true,
+      entities: ['dist/**/*.entity.ts']
     }
   }
 }
