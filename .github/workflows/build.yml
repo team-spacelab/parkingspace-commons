@@ -24,7 +24,7 @@ jobs:
           rm -r src
           git add dist -f
           git commit -m "build: $(git log --format="%H" -n 1) commit"
-          git remote set-url origin --push https://github-actions[bot]:${GITHUB_TOKEN}@github.com/parkingspace-commons.git
+          git remote set-url origin --push https://github-actions[bot]:${GITHUB_TOKEN}@github.com/team-spacelab/parkingspace-commons.git
           git push origin pkg
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
