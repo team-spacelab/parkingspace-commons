@@ -22,6 +22,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git checkout -b pkg
           rm -r src
+          git add .
           git add dist -f
           git commit -m "build: $(git log --format="%H" -n 1) commit"
           git remote set-url origin --push https://github-actions[bot]:${GITHUB_TOKEN}@github.com/team-spacelab/parkingspace-commons.git
