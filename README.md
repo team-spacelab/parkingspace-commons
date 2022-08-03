@@ -22,4 +22,31 @@ async function bootstrap () {
 
 bootstrap()
 ```
-3. profit!
+3. apply this code to `app.module.ts`:
+```ts
+@Module({
+  imports: [
+    ConfigModule.forRoot(),
+    // ...
+    HealthModule,
+    CryptoModule,
+    LoggerModule
+  ]
+})
+export class AppModule implements NestModule {
+  public configure (consumer: MiddlewareConsumer) {
+    consumer
+      .apply(ResolveTokenMiddleware)
+      .forRoutes('/')
+  }
+}
+```
+4. create `.env` file and enter:
+```env
+DATABASE_HOST=
+DATABASE_USER=
+DATABASE_PASSWD=
+DATABASE_SCHEMA=
+SESSION_SECRET=
+```
+5. profit!
