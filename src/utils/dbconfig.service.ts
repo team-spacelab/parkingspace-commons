@@ -19,7 +19,7 @@ export class DBConfigService implements TypeOrmOptionsFactory {
       password: this.config.get<string>('DATABASE_PASSWD', ''),
       database: this.config.get<string>('DATABASE_SCHEMA', 'parkingspace'),
       autoLoadEntities: true,
-      entities: ['dist/**/*.entity.ts']
+      entities: ['dist/**/*.entity{.js,.ts}']
     }
   }
 }
