@@ -46,6 +46,9 @@ export class Users {
   @Column({ name: 'users_createdat', type: 'timestamp' })
   public readonly createdAt: Date
 
+  @Column({ name: 'users_deleteat', type: 'timestamp' })
+  public readonly deleteAt?: Date
+
   @Column({ name: 'users_point' })
   public readonly point: number
 }
