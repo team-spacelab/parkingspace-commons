@@ -22,9 +22,10 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           export COMMIT_ID=$(git log --format="%H" -n 1)
           git checkout --orphan pkg
-          rm -r src
+          rm -r src .github
           git add .
           git add dist -f
+          npm version 0.0.0-`date +%s` --no-commit-hooks --no-git-tag-version
           git commit -m "build: ${COMMIT_ID} commit"
           git remote set-url origin --push https://github-actions[bot]:${GITHUB_TOKEN}@github.com/team-spacelab/parkingspace-commons.git
           git push origin pkg -f
