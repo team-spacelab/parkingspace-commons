@@ -5,7 +5,7 @@ import { HttpExceptionFilter } from './exception.filter'
 import { Logger } from './logger.service'
 import cookieParser from 'cookie-parser'
 
-export function setupCommons (app: INestApplication, serverName: string) {
+export function setupCommons (app: INestApplication | any, serverName: string) {
   app.useLogger(app.get(Logger))
 
   app.useGlobalFilters(new HttpExceptionFilter())
