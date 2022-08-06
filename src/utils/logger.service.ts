@@ -43,4 +43,12 @@ export class Logger implements LoggerService {
       extra: optionalParams
     }))
   }
+
+  app (message: any, ...optionalParams: any[]) {
+    console.log(JSON.stringify({
+      type: 'APP_LOG',
+      message,
+      extra: optionalParams
+    }))
+  }
 }
