@@ -6,7 +6,8 @@ export class Logger implements LoggerService {
     console.log(JSON.stringify({
       type: 'NESTJS_LOG',
       message,
-      extra: optionalParams
+      extra: optionalParams,
+      date: new Date()
     }))
   }
 
@@ -14,7 +15,8 @@ export class Logger implements LoggerService {
     console.log(JSON.stringify({
       type: 'ERROR_LOG',
       message,
-      extra: optionalParams
+      extra: optionalParams,
+      date: new Date()
     }))
   }
 
@@ -22,7 +24,8 @@ export class Logger implements LoggerService {
     console.log(JSON.stringify({
       type: 'WARNING_LOG',
       message,
-      extra: optionalParams
+      extra: optionalParams,
+      date: new Date()
     }))
   }
 
@@ -31,7 +34,8 @@ export class Logger implements LoggerService {
     console.log(JSON.stringify({
       type: 'NESTJS_DEBUG_LOG',
       message,
-      extra: optionalParams
+      extra: optionalParams,
+      date: new Date()
     }))
   }
 
@@ -40,7 +44,8 @@ export class Logger implements LoggerService {
     console.log(JSON.stringify({
       type: 'NESTJS_VERBOSE_LOG',
       message,
-      extra: optionalParams
+      extra: optionalParams,
+      date: new Date()
     }))
   }
 
@@ -48,7 +53,8 @@ export class Logger implements LoggerService {
     console.log(JSON.stringify({
       type: 'APP_LOG',
       message,
-      extra: optionalParams
+      extra: optionalParams,
+      date: new Date()
     }))
   }
 }
