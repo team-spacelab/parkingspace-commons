@@ -31,6 +31,9 @@ export class Zones {
   @JoinColumn({ name: 'users_id' })
   public readonly manager: Users
 
+  @Column({ name: 'zones_name' })
+  public readonly name: string
+
   @Column({ name: 'zones_cost' })
   public readonly costDiffrence?: number
 
