@@ -16,6 +16,17 @@ export enum MethodType {
   '계좌이체'
 }
 
+export enum OrderStatus {
+  READY,
+  IN_PROGRESS,
+  WAITING_FOR_DEPOSIT,
+  DONE,
+  CANCELED,
+  PARTIAL_CANCELED,
+  ABORTED,
+  EXPIRED
+}
+
 @Entity('orders', { schema: 'parkingspace' })
 export class Orders {
   @PrimaryGeneratedColumn({ type: 'int', name: 'orders_id', unsigned: true })
@@ -27,7 +38,7 @@ export class Orders {
   @Column('int', { name: 'orders_point', unsigned: true })
     point: number
 
-  @Column('varchar', { name: 'orders_method', length: 4 })
+  @Column('int', { name: 'orders_method', unsigned: true })
     method: MethodType
 
   @Column('varchar', { name: 'orders_receipt', nullable: true, length: 256 })
@@ -37,7 +48,7 @@ export class Orders {
     name: 'orders_status',
     default: () => '0'
   })
-    ordersStatus: number
+    ordersStatus: OrderStatus
 
   @ManyToOne(() => Users, (users) => users.id, { eager: true })
   @JoinColumn([{ name: 'users_id' }])
