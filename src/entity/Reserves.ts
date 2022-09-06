@@ -29,10 +29,10 @@ export class Reserves {
     status: number
 
   @ManyToOne(() => Zones, (zones) => zones.id, { eager: true })
-  @JoinColumn([{ name: 'zones_id' }])
+  @JoinColumn({ name: 'zones_id' })
     zoneId: Zones
 
   @ManyToOne(() => Users, (users) => users.id, { eager: true })
-  @JoinColumn([{ name: 'users_id' }])
+  @JoinColumn({ name: 'users_id' })
     userId: Users
 }

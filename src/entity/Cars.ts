@@ -22,6 +22,6 @@ export class Cars {
     type: number
 
   @ManyToOne(() => Users, (users) => users.id, { eager: true })
-  @JoinColumn([{ name: 'users_id' }])
+  @JoinColumn({ name: 'users_id' })
     userId: Users
 }

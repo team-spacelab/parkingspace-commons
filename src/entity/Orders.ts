@@ -51,18 +51,18 @@ export class Orders {
     ordersStatus: OrderStatus
 
   @ManyToOne(() => Users, (users) => users.id, { eager: true })
-  @JoinColumn([{ name: 'users_id' }])
+  @JoinColumn({ name: 'users_id' })
     userId: Users
 
   @ManyToOne(() => Cars, (cars) => cars.id, { eager: true })
-  @JoinColumn([{ name: 'cars_id' }])
+  @JoinColumn({ name: 'cars_id' })
     carId: Cars
 
   @ManyToOne(() => Zones, (zones) => zones.id, { eager: true })
-  @JoinColumn([{ name: 'zones_id' }])
+  @JoinColumn({ name: 'zones_id' })
     zoneId: Zones
 
   @ManyToOne(() => Reserves, (reserves) => reserves.id, { eager: true })
-  @JoinColumn([{ name: 'reserves_id' }])
+  @JoinColumn({ name: 'reserves_id' })
     reserveId: Reserves
 }
