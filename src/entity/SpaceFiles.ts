@@ -30,6 +30,9 @@ export class SpaceFiles {
   @JoinColumn({ name: 'users_id' })
   public readonly uploader: Users
 
+  @Column({ name: 'spacefiles_url' })
+  public readonly url: string
+
   @Column({ name: 'spacefiles_type' })
   public readonly type: SpaceFileType
 
