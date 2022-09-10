@@ -7,21 +7,27 @@ import {
 } from 'typeorm'
 import { Users } from './Users'
 
-@Entity('cars', { schema: 'parkingspace' })
+@Entity('cars')
 export class Cars {
-  @PrimaryGeneratedColumn({ type: 'int', name: 'cars_id', unsigned: true })
+  @PrimaryGeneratedColumn({ type: 'int', unsigned: true })
     id: number
 
-  @Column('varchar', { name: 'cars_alias', length: 10 })
+  @Column({ type: 'int', unsigned: true })
+    userId: number
+
+  @Column({ type: 'varchar', length: 10 })
     alias: string
 
-  @Column('varchar', { name: 'cars_num', length: 8 })
+  @Column({ type: 'varchar', length: 8 })
     num: string
 
-  @Column('int', { name: 'cars_type', default: () => "'0'" })
+  @Column({ type: 'int', default: 3 })
     type: number
 
-  @ManyToOne(() => Users, (users) => users.id, { eager: true })
-  @JoinColumn({ name: 'users_id' })
-    userId: Users
+  @ManyToOne(() => Users, (users) => users.cars, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE'
+  })
+  @JoinColumn([{ name: 'userId', referencedColumnName: 'users_id' }])
+    user: Users
 }

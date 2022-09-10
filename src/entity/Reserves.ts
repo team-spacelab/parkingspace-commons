@@ -8,31 +8,37 @@ import {
 import { Zones } from './Zones'
 import { Users } from './Users'
 
-@Entity('reserves', { schema: 'parkingspace' })
+@Entity('reserves')
 export class Reserves {
-  @PrimaryGeneratedColumn({ type: 'int', name: 'reserves_id', unsigned: true })
+  @PrimaryGeneratedColumn({ type: 'int', unsigned: true })
     id: number
 
-  @Column('timestamp', {
-    name: 'reserves_startat',
-    default: () => 'CURRENT_TIMESTAMP'
-  })
-    startat: Date
+  @Column({ type: 'int', unsigned: true })
+    zonesId: number
 
-  @Column('timestamp', {
-    name: 'reserves_endat',
-    default: () => "'0000-00-00 00:00:00'"
-  })
-    endat: Date
+  @Column({ type: 'int', unsigned: true })
+    userId: number
 
-  @Column('int', { name: 'reserves_status', default: () => "'0'" })
+  @Column({ type: 'timestamp' })
+    startAt: Date
+
+  @Column({ type: 'timestamp' })
+    endAt: Date
+
+  @Column({ type: 'int', default: 0 })
     status: number
 
-  @ManyToOne(() => Zones, (zones) => zones.id, { eager: true })
-  @JoinColumn({ name: 'zones_id' })
-    zoneId: Zones
+  @ManyToOne(() => Zones, (zones) => zones.reserves, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE'
+  })
+  @JoinColumn([{ name: 'zonesId', referencedColumnName: 'zones_id' }])
+    zone: Zones
 
-  @ManyToOne(() => Users, (users) => users.id, { eager: true })
-  @JoinColumn({ name: 'users_id' })
-    userId: Users
+  @ManyToOne(() => Users, (users) => users.reserves, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE'
+  })
+  @JoinColumn([{ name: 'userId', referencedColumnName: 'users_id' }])
+    user: Users
 }
