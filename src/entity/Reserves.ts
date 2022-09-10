@@ -3,10 +3,12 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn
 } from 'typeorm'
 import { Zones } from './Zones'
 import { Users } from './Users'
+import { Orders } from './Orders'
 
 @Entity('reserves')
 export class Reserves {
@@ -32,7 +34,7 @@ export class Reserves {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE'
   })
-  @JoinColumn([{ name: 'zonesId', referencedColumnName: 'zones_id' }])
+  @JoinColumn([{ name: 'zoneId', referencedColumnName: 'zones_id' }])
     zone: Zones
 
   @ManyToOne(() => Users, (users) => users.reserves, {
@@ -41,4 +43,7 @@ export class Reserves {
   })
   @JoinColumn([{ name: 'userId', referencedColumnName: 'users_id' }])
     user: Users
+
+  @OneToMany(() => Orders, (orders) => orders.reserve)
+    orders: Orders[]
 }

@@ -1,7 +1,6 @@
 import {
   Column,
   Entity,
-  Index,
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn
@@ -27,42 +26,63 @@ export enum OrderStatus {
   EXPIRED
 }
 
-@Entity('orders', { schema: 'parkingspace' })
+@Entity('orders')
 export class Orders {
-  @PrimaryGeneratedColumn({ type: 'int', name: 'orders_id', unsigned: true })
+  @PrimaryGeneratedColumn({ type: 'int', unsigned: true })
     id: number
 
-  @Column('int', { name: 'orders_amount', unsigned: true })
+  @Column({ type: 'int', unsigned: true })
+    usersId: number
+
+  @Column({ type: 'int', unsigned: true })
+    carsId: number
+
+  @Column({ type: 'int', unsigned: true })
+    zonesId: number
+
+  @Column({ type: 'int', unsigned: true })
+    reservesId: number
+
+  @Column({ type: 'int', unsigned: true })
     amount: number
 
-  @Column('int', { name: 'orders_point', unsigned: true })
+  @Column({ type: 'int', unsigned: true })
     point: number
 
-  @Column('int', { name: 'orders_method', unsigned: true })
+  @Column({ type: 'varchar', length: 4 })
     method: MethodType
 
-  @Column('varchar', { name: 'orders_receipt', nullable: true, length: 256 })
-    ordersReceipt: string | null
+  @Column({ type: 'varchar', length: 256, nullable: true })
+    receipt: string
 
-  @Column('int', {
-    name: 'orders_status',
-    default: () => '0'
+  @Column({ type: 'int', default: 0 })
+    status: OrderStatus
+
+  @ManyToOne(() => Users, (users) => users.orders, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE'
   })
-    ordersStatus: OrderStatus
+  @JoinColumn([{ name: 'usersId', referencedColumnName: 'users_id' }])
+    user: Users
 
-  @ManyToOne(() => Users, (users) => users.id, { eager: true })
-  @JoinColumn({ name: 'users_id' })
-    userId: Users
+  @ManyToOne(() => Cars, (cars) => cars.orders, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE'
+  })
+  @JoinColumn([{ name: 'carsId', referencedColumnName: 'cars_id' }])
+    car: Cars
 
-  @ManyToOne(() => Cars, (cars) => cars.id, { eager: true })
-  @JoinColumn({ name: 'cars_id' })
-    carId: Cars
+  @ManyToOne(() => Zones, (zones) => zones.orders, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE'
+  })
+  @JoinColumn([{ name: 'zonesId', referencedColumnName: 'zones_id' }])
+    zone: Zones
 
-  @ManyToOne(() => Zones, (zones) => zones.id, { eager: true })
-  @JoinColumn({ name: 'zones_id' })
-    zoneId: Zones
-
-  @ManyToOne(() => Reserves, (reserves) => reserves.id, { eager: true })
-  @JoinColumn({ name: 'reserves_id' })
-    reserveId: Reserves
+  @ManyToOne(() => Reserves, (reserves) => reserves.orders, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE'
+  })
+  @JoinColumn([{ name: 'reservesId', referencedColumnName: 'reserves_id' }])
+    reserve: Reserves
 }

@@ -3,8 +3,10 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn
 } from 'typeorm'
+import { Orders } from './Orders'
 import { Users } from './Users'
 
 @Entity('cars')
@@ -30,4 +32,7 @@ export class Cars {
   })
   @JoinColumn([{ name: 'userId', referencedColumnName: 'users_id' }])
     user: Users
+
+  @OneToMany(() => Orders, (orders) => orders.car)
+    orders: Orders[]
 }

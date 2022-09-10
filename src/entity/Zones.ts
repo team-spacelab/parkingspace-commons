@@ -1,4 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
+import { Orders } from './Orders'
 import { Reserves } from './Reserves'
 import { Spaces } from './Spaces'
 import { Users } from './Users'
@@ -43,4 +44,7 @@ export class Zones {
 
   @OneToMany(() => Reserves, (reserve) => reserve.zone)
   public readonly reserves: Reserves[]
+
+  @OneToMany(() => Orders, (order) => order.zone)
+  public readonly orders: Orders[]
 }

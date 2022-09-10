@@ -1,5 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
 import { Cars } from './Cars'
+import { Orders } from './Orders'
 import { Reserves } from './Reserves'
 
 /* eslint-disable no-unused-vars */
@@ -59,4 +60,7 @@ export class Users {
 
   @OneToMany(() => Reserves, (reserves) => reserves.user)
   public readonly reserves: Reserves[]
+
+  @OneToMany(() => Orders, (orders) => orders.user)
+  public readonly orders: Orders[]
 }
