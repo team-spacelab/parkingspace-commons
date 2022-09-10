@@ -16,7 +16,7 @@ export class Reserves {
     id: number
 
   @Column({ type: 'int', unsigned: true })
-    zonesId: number
+    zoneId: number
 
   @Column({ type: 'int', unsigned: true })
     userId: number

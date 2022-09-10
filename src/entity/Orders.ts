@@ -32,16 +32,16 @@ export class Orders {
     id: number
 
   @Column({ type: 'int', unsigned: true })
-    usersId: number
+    userId: number
 
   @Column({ type: 'int', unsigned: true })
-    carsId: number
+    carId: number
 
   @Column({ type: 'int', unsigned: true })
-    zonesId: number
+    zoneId: number
 
   @Column({ type: 'int', unsigned: true })
-    reservesId: number
+    reserveId: number
 
   @Column({ type: 'int', unsigned: true })
     amount: number
@@ -62,27 +62,27 @@ export class Orders {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE'
   })
-  @JoinColumn([{ name: 'usersId', referencedColumnName: 'users_id' }])
+  @JoinColumn([{ name: 'userId', referencedColumnName: 'users_id' }])
     user: Users
 
   @ManyToOne(() => Cars, (cars) => cars.orders, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE'
   })
-  @JoinColumn([{ name: 'carsId', referencedColumnName: 'cars_id' }])
+  @JoinColumn([{ name: 'carId', referencedColumnName: 'cars_id' }])
     car: Cars
 
   @ManyToOne(() => Zones, (zones) => zones.orders, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE'
   })
-  @JoinColumn([{ name: 'zonesId', referencedColumnName: 'zones_id' }])
+  @JoinColumn([{ name: 'zoneId', referencedColumnName: 'zones_id' }])
     zone: Zones
 
   @ManyToOne(() => Reserves, (reserves) => reserves.orders, {
     onDelete: 'CASCADE',
     onUpdate: 'CASCADE'
   })
-  @JoinColumn([{ name: 'reservesId', referencedColumnName: 'reserves_id' }])
+  @JoinColumn([{ name: 'reserveId', referencedColumnName: 'reserves_id' }])
     reserve: Reserves
 }
