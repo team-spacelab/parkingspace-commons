@@ -28,61 +28,52 @@ export enum OrderStatus {
 
 @Entity('orders')
 export class Orders {
-  @PrimaryGeneratedColumn({ type: 'int', unsigned: true })
-    id: number
+  @PrimaryGeneratedColumn({ name: 'orders_id' })
+  public readonly id: number
 
-  @Column({ type: 'int', unsigned: true })
-    userId: number
+  @Column({ name: 'users_id' })
+  public readonly userId: number
 
-  @Column({ type: 'int', unsigned: true })
-    carId: number
+  @ManyToOne(() => Users, (user) => user.id, { eager: true })
+  @JoinColumn({ name: 'users_id' })
+  public readonly user: Users
 
-  @Column({ type: 'int', unsigned: true })
-    zoneId: number
+  @Column({ name: 'cars_id' })
+  public readonly carId: number
 
-  @Column({ type: 'int', unsigned: true })
-    reserveId: number
+  @ManyToOne(() => Cars, (car) => car.id, { eager: true })
+  @JoinColumn({ name: 'cars_id' })
+  public readonly car: Cars
 
-  @Column({ type: 'int', unsigned: true })
-    amount: number
+  @Column({ name: 'zones_id' })
+  public readonly zoneId: number
 
-  @Column({ type: 'int', unsigned: true })
-    point: number
+  @ManyToOne(() => Zones, (zone) => zone.id, { eager: true })
+  @JoinColumn({ name: 'zones_id' })
+  public readonly zone: Zones
 
-  @Column({ type: 'varchar', length: 4 })
-    method: MethodType
+  @Column({ name: 'reserves_id' })
+  public readonly reserveId: number
 
-  @Column({ type: 'varchar', length: 256, nullable: true })
-    receipt: string
+  @ManyToOne(() => Reserves, (reserve) => reserve.id, { eager: true })
+  @JoinColumn({ name: 'reserves_id' })
+  public readonly reserve: Reserves
 
-  @Column({ type: 'int', default: 0 })
-    status: OrderStatus
+  @Column({ name: 'orders_method' })
+  public readonly method: MethodType
 
-  @ManyToOne(() => Users, (users) => users.orders, {
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE'
-  })
-  @JoinColumn([{ name: 'userId', referencedColumnName: 'users_id' }])
-    user: Users
+  @Column({ name: 'orders_amout' })
+  public readonly amount: number
 
-  @ManyToOne(() => Cars, (cars) => cars.orders, {
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE'
-  })
-  @JoinColumn([{ name: 'carId', referencedColumnName: 'cars_id' }])
-    car: Cars
+  @Column({ name: 'orders_status' })
+  public readonly status: OrderStatus
 
-  @ManyToOne(() => Zones, (zones) => zones.orders, {
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE'
-  })
-  @JoinColumn([{ name: 'zoneId', referencedColumnName: 'zones_id' }])
-    zone: Zones
+  @Column({ name: 'orders_createdat', type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  public readonly createdAt: Date
 
-  @ManyToOne(() => Reserves, (reserves) => reserves.orders, {
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE'
-  })
-  @JoinColumn([{ name: 'reserveId', referencedColumnName: 'reserves_id' }])
-    reserve: Reserves
+  @Column({ name: 'orders_point' })
+  public readonly point: number
+
+  @Column({ name: 'orders_receipt', length: 256, nullable: true })
+  public readonly receipt: string
 }

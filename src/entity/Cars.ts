@@ -3,36 +3,41 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  OneToMany,
   PrimaryGeneratedColumn
 } from 'typeorm'
-import { Orders } from './Orders'
 import { Users } from './Users'
+
+/* eslint-disable no-unused-vars */
+
+export enum CarType {
+  LIGHTCAR,
+  COMPACTCAR,
+  SUBCOMPACTCAR,
+  MIDSIZECAR,
+  SEMILARGECAR,
+  LARGECAR
+}
+
+/* eslint-enable no-unused-vars */
 
 @Entity('cars')
 export class Cars {
-  @PrimaryGeneratedColumn({ type: 'int', unsigned: true })
-    id: number
+  @PrimaryGeneratedColumn({ name: 'cars_id' })
+  public readonly id: number
 
-  @Column({ type: 'int', unsigned: true })
-    userId: number
+  @Column({ name: 'users_id' })
+  public readonly userId: number
 
-  @Column({ type: 'varchar', length: 10 })
-    alias: string
+  @ManyToOne(() => Users, (user) => user.id, { eager: true })
+  @JoinColumn({ name: 'users_id' })
+  public readonly user: Users
 
-  @Column({ type: 'varchar', length: 8 })
-    num: string
+  @Column({ name: 'car_num' })
+  public readonly num: string
 
-  @Column({ type: 'int', default: 3 })
-    type: number
+  @Column({ name: 'car_type' })
+  public readonly type: CarType
 
-  @ManyToOne(() => Users, (users) => users.cars, {
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE'
-  })
-  @JoinColumn([{ name: 'userId', referencedColumnName: 'users_id' }])
-    user: Users
-
-  @OneToMany(() => Orders, (orders) => orders.car)
-    orders: Orders[]
+  @Column({ name: 'car_alias' })
+  public readonly alias: string
 }

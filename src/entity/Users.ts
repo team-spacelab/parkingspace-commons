@@ -1,7 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
-import { Cars } from './Cars'
-import { Orders } from './Orders'
-import { Reserves } from './Reserves'
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
 /* eslint-disable no-unused-vars */
 
@@ -54,13 +51,4 @@ export class Users {
 
   @Column({ name: 'users_point', select: false })
   public readonly point: number
-
-  @OneToMany(() => Cars, (cars) => cars.user)
-  public readonly cars: Cars[]
-
-  @OneToMany(() => Reserves, (reserves) => reserves.user)
-  public readonly reserves: Reserves[]
-
-  @OneToMany(() => Orders, (orders) => orders.user)
-  public readonly orders: Orders[]
 }
