@@ -25,22 +25,22 @@ export class Users {
   @Column({ name: 'users_nickname' })
   public readonly nickname: string
 
-  @Column({ name: 'users_password' })
+  @Column({ name: 'users_password', select: false })
   public readonly password: string
 
-  @Column({ name: 'users_salt' })
+  @Column({ name: 'users_salt', select: false })
   public readonly salt: string
 
-  @Column({ name: 'users_phone' })
+  @Column({ name: 'users_phone', select: false })
   public readonly phone?: string
 
   @Column({ name: 'users_isverified' })
   public readonly isVerified: boolean
 
-  @Column({ name: 'users_realname' })
+  @Column({ name: 'users_realname', select: false })
   public readonly realname?: string
 
-  @Column({ name: 'users_birth', type: 'date' })
+  @Column({ name: 'users_birth', type: 'date', select: false })
   public readonly birthday?: Date
 
   @Column({ name: 'users_status' })
@@ -52,7 +52,7 @@ export class Users {
   @Column({ name: 'users_deleteat', type: 'timestamp' })
   public readonly deleteAt?: Date
 
-  @Column({ name: 'users_point' })
+  @Column({ name: 'users_point', select: false })
   public readonly point: number
 
   @OneToMany(() => Cars, (cars) => cars.user)
