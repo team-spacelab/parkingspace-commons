@@ -58,6 +58,6 @@ export class Spaces {
   public readonly timeUnit: number
 
   @OneToMany(() => Zones, (zone) => zone.parentSpace)
-  @JoinColumn({ name: 'zoneId', referencedColumnName: 'zone_id' })
+  @JoinColumn({ name: 'spaces_id' })
   public readonly childrenZones: Zones[]
 }
