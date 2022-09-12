@@ -32,12 +32,12 @@ export class Cars {
   @JoinColumn({ name: 'users_id' })
   public readonly user: Users
 
-  @Column({ name: 'car_num' })
+  @Column({ name: 'cars_num' })
   public readonly num: string
 
-  @Column({ name: 'car_type' })
+  @Column({ name: 'cars_type' })
   public readonly type: CarType
 
-  @Column({ name: 'car_alias' })
+  @Column({ name: 'cars_alias' })
   public readonly alias: string
 }

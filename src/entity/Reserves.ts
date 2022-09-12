@@ -39,13 +39,13 @@ export class Reserves {
   @JoinColumn({ name: 'users_id' })
   public readonly user: Users
 
-  @Column({ name: 'reserve_start' })
+  @Column({ name: 'reserves_start' })
   public readonly start: Date
 
-  @Column({ name: 'reserve_end' })
+  @Column({ name: 'reserves_end' })
   public readonly end: Date
 
-  @Column({ name: 'reserve_status' })
+  @Column({ name: 'reserves_status' })
   public readonly status: ReserveStatus
 
   @OneToMany(() => Orders, (order) => order.reserve)
