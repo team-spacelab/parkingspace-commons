@@ -39,11 +39,11 @@ export class Reserves {
   @JoinColumn({ name: 'users_id' })
   public readonly user: Users
 
-  @Column({ name: 'reserves_start' })
-  public readonly start: Date
+  @Column({ name: 'reserves_startat' })
+  public readonly startAt: Date
 
-  @Column({ name: 'reserves_end' })
-  public readonly end: Date
+  @Column({ name: 'reserves_endat' })
+  public readonly endAt: Date
 
   @Column({ name: 'reserves_status' })
   public readonly status: ReserveStatus
