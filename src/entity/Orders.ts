@@ -3,7 +3,7 @@ import {
   Entity,
   JoinColumn,
   ManyToOne,
-  PrimaryGeneratedColumn
+  PrimaryColumn
 } from 'typeorm'
 import { Users } from './Users'
 import { Cars } from './Cars'
@@ -28,8 +28,8 @@ export enum OrderStatus {
 
 @Entity('orders')
 export class Orders {
-  @PrimaryGeneratedColumn({ name: 'orders_id' })
-  public readonly id: number
+  @PrimaryColumn({ name: 'orders_id', length: 36, type: 'varchar' })
+  public readonly id: string
 
   @Column({ name: 'users_id' })
   public readonly userId: number
