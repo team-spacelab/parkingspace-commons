@@ -57,6 +57,6 @@ export class Spaces {
   @Column({ name: 'spaces_unit' })
   public readonly timeUnit: number
 
-  @OneToMany(() => Zones, (zone) => zone.spaceId)
+  @OneToMany(() => Zones, (zone) => zone.parentSpace)
   public readonly childrenZones: Zones[]
 }
