@@ -18,6 +18,11 @@ export enum CarType {
   LARGECAR
 }
 
+export enum CarStatus {
+  AVALIABLE,
+  DELETED
+}
+
 /* eslint-enable no-unused-vars */
 
 @Entity('cars')
@@ -40,4 +45,7 @@ export class Cars {
 
   @Column({ name: 'cars_alias' })
   public readonly alias: string
+
+  @Column({ name: 'cars_status' })
+  public readonly status: CarStatus
 }
