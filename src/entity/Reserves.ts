@@ -35,7 +35,7 @@ export class Reserves {
   @Column({ name: 'users_id' })
   public readonly userId: number
 
-  @ManyToOne(() => Users, (user) => user.id, { eager: true })
+  @ManyToOne(() => Users, (user) => user.id)
   @JoinColumn({ name: 'users_id' })
   public readonly user: Users
 
