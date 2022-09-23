@@ -40,10 +40,10 @@ export class Reserves {
   public readonly user: Users
 
   @Column({ name: 'reserves_startat', type: 'timestamp' })
-  public readonly startAt: number
+  public readonly startAt: Date
 
   @Column({ name: 'reserves_endat', type: 'timestamp' })
-  public readonly endAt: number
+  public readonly endAt: Date
 
   @Column({ name: 'reserves_status' })
   public readonly status: ReserveStatus
