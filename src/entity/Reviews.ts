@@ -20,7 +20,7 @@ export class Reviews {
   public readonly deletedAt: Date
 
   @Column({ name: 'users_id' })
-  public readonly writer: number
+  public readonly userId: number
 
   @Column({ name: 'spaces_id' })
   public readonly spaceId: number
