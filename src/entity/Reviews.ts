@@ -22,7 +22,7 @@ export class Reviews {
   @Column({ name: 'users_id' })
   public readonly writer: number
 
-  @Column({ name: 'space_id' })
+  @Column({ name: 'spaces_id' })
   public readonly spaceId: number
 
   @ManyToOne(() => Users, (user) => user.id, { eager: true })
@@ -30,6 +30,6 @@ export class Reviews {
   public readonly user: Users
 
   @ManyToOne(() => Spaces, (space) => space.id, { eager: true })
-  @JoinColumn({ name: 'space_id' })
+  @JoinColumn({ name: 'spaces_id' })
   public readonly space: Spaces
 }
