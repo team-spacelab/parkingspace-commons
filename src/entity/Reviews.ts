@@ -2,8 +2,8 @@ import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 't
 import { Spaces } from './Spaces'
 import { Users } from './Users'
 
-@Entity()
-export class Review {
+@Entity('reviews')
+export class Reviews {
   @PrimaryGeneratedColumn({ name: 'reviews_id' })
   public readonly id: number
 

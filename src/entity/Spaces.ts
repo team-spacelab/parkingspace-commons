@@ -1,4 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
+import { Reviews } from './Reviews'
 import { Users } from './Users'
 import { Zones } from './Zones'
 
@@ -60,4 +61,7 @@ export class Spaces {
   @OneToMany(() => Zones, (zone) => zone.parentSpace)
   @JoinColumn({ name: 'spaces_id' })
   public readonly childrenZones: Zones[]
+
+  @OneToMany(() => Reviews, (review) => review.space)
+  public readonly reviews: Reviews[]
 }
